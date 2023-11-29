@@ -1,0 +1,61 @@
+graph LR
+
+    subgraph User
+
+        node[User]
+
+    end
+
+    subgraph Browser
+
+        node[Browser]
+
+    end
+
+    subgraph Server
+
+        node[Server]
+
+    end
+
+    subgraph data.json
+
+        node[data.json]
+
+    end
+
+    subgraph main.js
+
+        node[main.js]
+
+    end
+
+    subgraph main.css
+
+        node[main.css]
+
+    end
+
+    User --> Browser: User writes something in the field and clicks Save.
+
+    Browser --> Server: HTTP POST https://fullstack-exampleapp.herokuapp.com/notes
+
+    Server --> Browser: HTTP 302
+
+    Browser --> Server: HTTP GET https://fullstack-exampleapp.herokuapp.com/notes
+
+    Server --> Browser: HTTP 304, page HTML code
+
+    Browser --> Server: HTTP GET https://fullstack-exampleapp.herokuapp.com/main.js
+
+    Server --> Browser: HTTP 304, main.js
+
+    Browser --> Browser: Browser displays notes and the form.
+
+    Browser --> main.js: main.js loads notes from data.json.
+
+    main.js --> Browser: Main.js updates the page based on data.json.
+
+    Browser --> Server: HTTP GET https://fullstack-exampleapp.herokuapp.com/main.css
+
+    Server --> Browser: HTTP 304, main.css

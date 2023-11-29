@@ -1,0 +1,58 @@
+graph LR
+
+    subgraph User
+
+        node[User]
+
+    end
+
+    subgraph Browser
+
+        node[Browser]
+
+    end
+
+    subgraph Server
+
+        node[Server]
+
+    end
+
+    subgraph data.json
+
+        node[data.json]
+
+    end
+
+    subgraph main.js
+
+        node[main.js]
+
+    end
+
+    subgraph main.css
+
+        node[main.css]
+
+    end
+
+    User --> Browser: User navigates to https://studies.cs.helsinki.fi/exampleapp/spa
+
+    Browser --> Server: HTTP GET https://studies.cs.helsinki.fi/exampleapp/spa
+    
+    Server --> Browser: Status 304, spa.html
+
+    Browser --> Server: HTTP GET https://studies.cs.helsinki.fi/exampleapp/spa/main.js
+
+    Server --> Browser: Status 304, spa.js
+
+    Browser --> main.js: main.js loads data.json
+
+    main.js --> Browser: SPA updates based on data.json
+
+    Browser --> Server: HTTP GET https://studies.cs.helsinki.fi/exampleapp/spa/main.css
+
+    Server --> Browser: Status 304, main.css
+
+    Browser --> Browser: SPA is displayed
+

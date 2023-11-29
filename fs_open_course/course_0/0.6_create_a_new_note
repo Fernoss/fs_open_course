@@ -1,0 +1,47 @@
+graph LR
+
+    subgraph User
+
+        node[User]
+
+    end
+
+    subgraph Browser
+
+        node[Browser]
+
+    end
+
+    subgraph Server
+
+        node[Server]
+
+    end
+
+    subgraph data.json
+
+        node[data.json]
+
+    end
+
+    subgraph main.js
+
+        node[main.js]
+
+    end
+
+    subgraph main.css
+
+        node[main.css]
+
+    end
+    
+    Browser --> Server: User interacts with the SPA (e.g., creates a new note)
+
+    Browser --> Server: HTTP POST https://studies.cs.helsinki.fi/exampleapp/new_note_spa
+
+    Server --> Browser: HTTP 201, new note created
+
+    Browser --> main.js: main.js updates data.json
+
+    main.js --> Browser: SPA reflects the updated state
